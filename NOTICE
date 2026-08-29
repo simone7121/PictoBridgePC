@@ -1,0 +1,8 @@
+PictoBridgePC
+Copyright © 2026 Simone D'Anna.
+
+This project is an independent experimental bridge for classic ESP32 hardware
+and Nintendo DSi PictoChat. It is not affiliated with or endorsed by Nintendo,
+Espressif, or the authors of the third-party radio components.
+
+See README.md and LICENSING.md for project and third-party licensing details.

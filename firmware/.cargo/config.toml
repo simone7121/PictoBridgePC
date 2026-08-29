@@ -1,0 +1,11 @@
+[build]
+target = "xtensa-esp32-none-elf"
+rustflags = ["-C", "link-arg=-nostartfiles", "-C", "link-arg=-Tlinkall.x"]
+
+[unstable]
+build-std = ["alloc", "core"]
+
+[env]
+ESP_HAL_CONFIG_XTAL_FREQUENCY = "40"
+DEFMT_LOG = "off"
+

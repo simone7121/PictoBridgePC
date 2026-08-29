@@ -1,0 +1,30 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local/editor files
+.env
+.env.*
+.idea/
+.vscode/
+.DS_Store
+
+# Downloaded build dependencies and build output
+vendor/
+firmware/target/
+test-protocol
+test-protocol.exe
+
+# Private/local project context
+.codex/
+ricevuti/*
+!ricevuti/.gitkeep
+backup-originale-esp32.bin
+backup*.bin
+
+# Generated debug symbols; keep the small merged image for releases/tests
+dist/*.elf

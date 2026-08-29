@@ -1,0 +1,35 @@
+name: Checks
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.9', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Run tests
+        run: python -m unittest -v test_pc
+      - name: Compile Python sources
+        run: python -m compileall -q pc_capture.py pc_codec.py pc_protocol.py pictobridge.py pictobridge_gui.py pictobridge_gui_qt.py prepare_sources.py verify_firmware.py test_pc.py
+      - name: Verify distributed firmware image
+        run: python verify_firmware.py
+
+  firmware-protocol:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Run dependency-free Rust protocol tests
+        run: |
+          rustc --test firmware/src/protocol.rs -o /tmp/pictobridge-protocol-tests
+          /tmp/pictobridge-protocol-tests
